@@ -2,3 +2,52 @@
     background: linear-gradient(0deg, #DADBD4 85%, #009688 15%);
     padding: 20px 0;
 }
+
+/* Left Column */
+.list-structure {
+    border-right: 2px solid blue;
+}
+
+.list-structure header {
+    height: 80px;
+    background-color: green;
+}
+
+.list-structure .under-header{
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.under-header .notifications {
+    height: 80px;
+    background-color: blue;
+}
+
+.under-header .find-chat {
+    height: 50px;
+    background-color: purple;
+}
+
+.list-structure main {
+    height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+/* Right Column */
+.open-structure header, .open-structure footer {
+    height: 80px;
+    background-color: red;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.open-structure main {
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    background-image: url('../img/mine.jpg');
+}
+
+
+
