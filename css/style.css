@@ -50,11 +50,12 @@ ul {
     padding-bottom: 0;
 }
 
-.message.user{
+.sent{
     background-color: #D5F9BA;
+    align-items: flex-end;
 }
 
-.message.receiver{
+.received{
     background-color: #fff;
 }
 
@@ -114,7 +115,7 @@ ul {
 }
 
 main div.chat-list:hover {  
-    background-color: #DADBD4;
+    background-color: #EAEAEA;;
 }
 
 /* Right Column */
@@ -143,13 +144,7 @@ main div.chat-list:hover {
     height: 100%;
 }
 
-.row {
-    display: flex;
-}
 
-.row .end-position {
-    justify-content: flex-end;
-}
 
 
 

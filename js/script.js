@@ -91,9 +91,16 @@ const app = Vue.createApp({
                    }
                    ],
                  },
-            ],      
+            ], 
+            currentIndex: 0,  
         }
     },
+    methods: {
+      changeCurrentIndex(index){
+        console.log(this.currentIndex);
+        return this.currentIndex = index;
+      }
+    }
 
 });
 

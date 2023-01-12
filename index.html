@@ -28,9 +28,9 @@
                     <!-- User -->
                     <div class="d-flex align-items-center">
                         <div class="circle">
-                            <img src="img/avatar_io.jpg" alt="me">
+                            <img :src=`img/avatar${user.avatar}.jpg` :alt="user.name">
                         </div>
-                        <span class="ps-1">Nome Utente</span>
+                        <span class="ps-1">{{ user.name }}</span>
                     </div>
                     <ul class="d-flex align-items-center m-0">
                         <li>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <main>
-                    <div v-for="(contact, i) in contacts" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
+                    <div v-for="(contact, i) in contacts" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
                         <div class="circle bigger">
                             <img :src=`img/avatar${contact.avatar}.jpg` alt="avatar">
                         </div>
@@ -68,16 +68,17 @@
                     <div>
                 </main>
             </div>
+
             <!-- Right Column -->
             <div class="open-structure col-8 bg-warning vh-100 p-0">
                 <!-- Header -->
                 <header class="px-3 d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="circle">
-                            <img src="img/avatar_1.jpg" alt="avatar_1">
+                            <img :src=`img/avatar${contacts[currentIndex].avatar}.jpg` :alt="contacts[currentIndex].name">
                         </div>
                         <div class="px-3">
-                            <div class="lh-sm">Michele</div>
+                            <div class="lh-sm">{{ contacts[currentIndex].name }}</div>
                             <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso oggi alle 14</div>
                         </div>
                     </div>
@@ -90,22 +91,10 @@
                     </ul>
                 </header>
                 <main>
-                    <div class="row end-position">
-                        <div class="message user">
-                            <div class="text-message">Hai portato a spasso il cane?</div>
-                            <div class="date-message">10/01/2020 15:30:55</div>
-                        </div>
-                    </div>
-                    <div class="row end-position">
-                        <div class="message user">
-                            <div class="text-message">Ricordati di dargli da mangiare</div>
-                            <div class="date-message">10/01/2020 15:50:55</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="message receiver">
-                            <div class="text-message">Tutto fatto!</div>
-                            <div class="date-message">10/01/2020 16:15:22</div>
+                    <div class="d-flex flex-column" v-for="(message,index) in contacts[currentIndex].messages">
+                        <div :class="message.status" class="message">
+                            <div class="text-message">{{ message.text }}</div>
+                            <div class="date-message">{{ message.date }}</div>
                         </div>
                     </div>
                 </main>
