@@ -3,6 +3,30 @@
     padding: 20px 0;
 }
 
+/* Generics  */
+i {
+    color: #B1B1B1;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Utils */
+.circle {
+    height: 60px;
+    width: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.circle img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
 /* Left Column */
 .list-structure {
     border-right: 2px solid blue;
@@ -10,7 +34,7 @@
 
 .list-structure header {
     height: 80px;
-    background-color: green;
+    background-color: #EAEAEA;
 }
 
 .list-structure .under-header{
@@ -21,12 +45,19 @@
 
 .under-header .notifications {
     height: 80px;
-    background-color: blue;
+    background-color: #8EDAFC;
+}
+
+.notifications i {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: #8EDAFC;
 }
 
 .under-header .find-chat {
     height: 50px;
-    background-color: purple;
+    background-color: #fff;
 }
 
 .list-structure main {
@@ -37,7 +68,7 @@
 /* Right Column */
 .open-structure header, .open-structure footer {
     height: 80px;
-    background-color: red;
+    background-color: #EAEAEA;
     position: sticky;
     top: 0;
     left: 0;
