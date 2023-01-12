@@ -27,10 +27,15 @@ ul {
     object-fit: cover;
 }
 
-/* Left Column */
-.list-structure {
-    border-right: 2px solid blue;
+.fs-small-custom {
+    font-size: 13px;
 }
+
+.custom-bg-grey {
+    background-color: #EAEAEA;
+}
+
+/* Left Column */
 
 .list-structure header {
     height: 80px;
@@ -57,7 +62,6 @@ ul {
 
 .under-header .find-chat {
     height: 50px;
-    background-color: #fff;
 }
 
 .list-structure main {
@@ -78,6 +82,16 @@ ul {
     height: calc(100vh - 160px);
     overflow-y: auto;
     background-image: url('../img/mine.jpg');
+}
+
+.open-structure .footer-center {
+    width: 70%;
+    height: 100%;
+}
+
+.open-structure .footer-left, .open-structure .footer-right {
+    width: 15%;
+    height: 100%;
 }
 
 
