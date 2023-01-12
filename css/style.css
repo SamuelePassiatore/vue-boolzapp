@@ -35,6 +35,35 @@ ul {
     background-color: #EAEAEA;
 }
 
+.message {
+    min-height: 55px;
+    width: 40%;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.message.user{
+    background-color: #D5F9BA;
+}
+
+.message.receiver{
+    background-color: #fff;
+}
+
+.text-message {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.date-message {
+    font-size: 10px;
+    color: grey;
+    text-align: right;
+}
+
 /* Left Column */
 
 .list-structure header {
@@ -82,6 +111,7 @@ ul {
     height: calc(100vh - 160px);
     overflow-y: auto;
     background-image: url('../img/mine.jpg');
+    padding: 40px 50px;
 }
 
 .open-structure .footer-center {
@@ -92,6 +122,14 @@ ul {
 .open-structure .footer-left, .open-structure .footer-right {
     width: 15%;
     height: 100%;
+}
+
+.row {
+    display: flex;
+}
+
+.row .end-position {
+    justify-content: flex-end;
 }
 
 
