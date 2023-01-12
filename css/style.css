@@ -6,6 +6,7 @@
 /* Generics  */
 i {
     color: #B1B1B1;
+    cursor: pointer;
 }
 
 ul {
@@ -19,6 +20,11 @@ ul {
     background-color: #fff;
     border-radius: 50%;
     overflow: hidden;
+}
+
+.circle.bigger {
+    height: 70px;
+    width: 70px;
 }
 
 .circle img {
@@ -89,6 +95,10 @@ ul {
     color: #8EDAFC;
 }
 
+.active-notifies {
+    cursor: pointer;
+}
+
 .under-header .find-chat {
     height: 50px;
 }
@@ -96,6 +106,15 @@ ul {
 .list-structure main {
     height: calc(100vh - 210px);
     overflow-y: auto;
+}
+
+.chat-list {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+main div.chat-list:hover {  
+    background-color: #DADBD4;
 }
 
 /* Right Column */
@@ -131,6 +150,7 @@ ul {
 .row .end-position {
     justify-content: flex-end;
 }
+
 
 
 

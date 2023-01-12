@@ -16,15 +16,14 @@
     <!-- Vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- Script -->
-    <script src="js/data_milestone1.js"></script>
     <script defer src="js/script.js"></script>
 </head>
 <body>
     <div id="root">
         <div class="container vh-100 d-flex">
             <div class="row w-100">
-                            <!-- Left Column -->
-            <div class="list-structure col-4 bg-primary vh-100 p-0">
+            <!-- Left Column -->
+            <div class="list-structure col-4 vh-100 p-0">
                 <header class="px-3 d-flex align-items-center justify-content-between">
                     <!-- User -->
                     <div class="d-flex align-items-center">
@@ -49,7 +48,7 @@
                             </div>
                             <div>
                                 <div class="lh-sm">Ricevi notifiche di nuovi messaggi</div>
-                                <div class="text-secondary lh-sm text-decoration-underline fs-small-custom">Attiva notifiche desktop</div>
+                                <div class="active-notifies text-secondary lh-sm text-decoration-underline fs-small-custom">Attiva notifiche desktop</div>
                             </div>
                         </div>
                     </div>
@@ -60,7 +59,14 @@
                         </span>
                     </div>
                 </div>
-                <main></main>
+                <main>
+                    <div v-for="(contact, i) in contacts" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
+                        <div class="circle bigger">
+                            <img :src=`img/avatar${contact.avatar}.jpg` alt="avatar">
+                        </div>
+                        <span class="ps-3">{{contact.name}}</span>
+                    <div>
+                </main>
             </div>
             <!-- Right Column -->
             <div class="open-structure col-8 bg-warning vh-100 p-0">
