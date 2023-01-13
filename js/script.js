@@ -1,6 +1,8 @@
 console.log('JS OK');
 console.log('Vue OK', Vue);
 
+const newDate = new Date().toLocaleString();
+
 const app = Vue.createApp({
     name: 'Boolzapp',
     data(){
@@ -93,13 +95,42 @@ const app = Vue.createApp({
                  },
             ], 
             currentIndex: 0,  
+            newMessage: ''
         }
     },
     methods: {
+      // funzione che assegna all'array l'indice corrente
       changeCurrentIndex(index){
         console.log(this.currentIndex);
         return this.currentIndex = index;
-      }
+      },
+
+      // funzione che aggiunge un nuovo messaggio alla chat
+      sentMessage(){
+        const message = {
+            date: new Date().toLocaleString(),
+            text: this.newMessage,
+            status: 'sent'
+        }
+        this.contacts[this.currentIndex].messages.push(message);
+        this.clearInput();
+        this.receivedMessage();
+      },
+
+      clearInput(){
+        this.newMessage = '';
+      },
+
+      receivedMessage(){
+        setTimeout (()=>{
+            const message = {
+                date: new Date().toLocaleString(),
+                text: 'ok',
+                status: 'received'
+            }
+            this.contacts[this.currentIndex].messages.push(message);
+        },1000)
+     }
     }
 
 });

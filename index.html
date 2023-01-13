@@ -23,6 +23,7 @@
             <div class="row w-100">
                 <!-- Left Column -->
                 <div class="list-structure col-4 h-100 p-0">
+                    <!-- Header Side -->
                     <header class="px-3 d-flex align-items-center justify-content-between">
                     <!-- User -->
                         <div class="d-flex align-items-center">
@@ -39,6 +40,7 @@
                             </li>
                         </ul>
                     </header>
+                    <!-- Under Header side -->
                     <div class="under-header">
                         <div class="notifications px-3">
                             <div class="d-flex align-items-center h-100">
@@ -58,6 +60,7 @@
                             </span>
                         </div>
                     </div>
+                    <!-- Main Side -->
                     <main>
                         <div v-for="(contact, i) in contacts" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
                             <div class="circle bigger">
@@ -101,7 +104,7 @@
                     <!-- Footer chat -->
                     <div class="footer-chat d-flex align-items-center custom-bg-grey p-2">
                         <span class="footer-left d-flex align-items-center justify-content-center"><i class="fa-regular fa-face-smile fs-4 text-secondary"></i></span>
-                        <span class="footer-center d-flex py-1"><input type="text" placeholder="Scrivi un messaggio" class="w-100 border-0 rounded-1"></span>
+                        <span class="footer-center d-flex py-1"><input type="text" placeholder="Scrivi un messaggio" class="w-100 border-0 rounded-1 px-2" v-model.trim="newMessage" @keyup.enter="sentMessage"></span>
                         <span class="footer-right d-flex align-items-center justify-content-center"><i class="fa-solid fa-microphone fs-4 text-secondary"></i></span>
                     </div>
                 </div>
