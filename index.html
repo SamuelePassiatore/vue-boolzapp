@@ -19,7 +19,7 @@
     <script defer src="js/script.js"></script>
 </head>
 <body class="vh-100">
-        <div id="root" class="container h-100 d-flex">
+    <div id="root" class="container h-100 d-flex">
             <div class="row w-100">
                 <!-- Left Column -->
                 <div class="list-structure col-4 h-100 p-0">
@@ -56,13 +56,13 @@
                         <div class="find-chat d-flex align-items-center custom-bg-grey p-2"> 
                             <span class="d-flex h-100 align-items-center w-100 bg-white px-3 ">
                                 <i class="fa-solid fa-magnifying-glass pe-5"></i>
-                                <input type="text" placeholder="Cerca o inizia una nuova chat" class="w-100 border-0">
+                                <input type="text" placeholder="Cerca o inizia una nuova chat" class="w-100 border-0" v-model="searchChat" @key.enter="" @keyup.esc="clearInput">
                             </span>
                         </div>
                     </div>
                     <!-- Main Side -->
                     <main>
-                        <div v-for="(contact, i) in contacts" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
+                        <div v-for="(contact, i) in filteredChat" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
                             <div class="circle bigger">
                                 <img :src=`img/avatar${contact.avatar}.jpg` :alt="contact.avatar">
                             </div>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="px-3">
                                 <div class="lh-sm">{{ contacts[currentIndex].name }}</div>
-                                <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso oggi alle 14</div>
+                                <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso oggi alle {{newDate}}</div>
                             </div>
                         </div>
                         <ul class="d-flex align-items-center m-0">
@@ -109,6 +109,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
 </body>
 </html>

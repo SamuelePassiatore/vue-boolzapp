@@ -1,8 +1,6 @@
 console.log('JS OK');
 console.log('Vue OK', Vue);
 
-const newDate = new Date().toLocaleString();
-
 const app = Vue.createApp({
     name: 'Boolzapp',
     data(){
@@ -77,7 +75,7 @@ const app = Vue.createApp({
                    }
                    ],
                  },
-                   {               
+                  {             
                    name: 'Luisa',
                    avatar: '_4',
                    visible: true,
@@ -95,9 +93,20 @@ const app = Vue.createApp({
                  },
             ], 
             currentIndex: 0,  
-            newMessage: ''
+            newMessage: '',
+            searchChat: '',
+            newDate: new Date().toLocaleString()
+
         }
     },
+
+    computed: {
+      // Funzione che filtra la lista delle chat
+      filteredChat(){
+        return this.contacts.filter(contact => contact.name.toLowerCase().includes(this.searchChat.toLowerCase()));
+      }
+    },
+
     methods: {
       // funzione che assegna all'array l'indice corrente
       changeCurrentIndex(index){
@@ -117,10 +126,13 @@ const app = Vue.createApp({
         this.receivedMessage();
       },
 
+      // Funzione che pulisce l'input
       clearInput(){
         this.newMessage = '';
+        this.searchChat = '';
       },
 
+      // Funzione a intervalli che stampa il messaggio ok
       receivedMessage(){
         setTimeout (()=>{
             const message = {
@@ -129,7 +141,7 @@ const app = Vue.createApp({
                 status: 'received'
             }
             this.contacts[this.currentIndex].messages.push(message);
-        },1000)
+        }, 1000)
      }
     }
 
