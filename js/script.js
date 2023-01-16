@@ -100,13 +100,6 @@ const app = Vue.createApp({
         }
     },
 
-    computed: {
-      // Funzione che filtra la lista delle chat
-      filteredChat(){
-        return this.contacts.filter(contact => contact.name.toLowerCase().includes(this.searchChat.toLowerCase()));
-      }
-    },
-
     methods: {
       // funzione che assegna all'array l'indice corrente
       changeCurrentIndex(index){
@@ -151,6 +144,7 @@ const app = Vue.createApp({
         }, 1000)
       },
 
+      // Funzione che imposta il toggle
       toggleDropdown(index) {
         this.dropdownIndex = index;
   
@@ -161,15 +155,42 @@ const app = Vue.createApp({
         }
       },
 
+      // Funzione che nasconde il toggle
       hideDropdown() {
         this.dropdownDisplay = false;
       },
 
+      // Funzione che nasconde il messaggio
       deleteMessage(index) {
         this.contacts[this.currentIndex].messages.splice(index, 1);
         this.hideDropdown();
-      }
+      },
+
+      // ! Funzione che filtra la chat / Doesn't function
+      //  searchContact() {
+      //   this.contacts.forEach( (contact) => {
+      //     contact.visible = false;
+  
+      //     let nameLowerCase = contact.name.toLowerCase();
+      //     let userInputLowerCase = this.userInput.toLowerCase();
+  
+      //     if (nameLowerCase.includes(userInputLowerCase)) {
+      //       contact.visible = true;
+      //     }
+  
+      //   });
+      // },
+      
+      // Funzione che filtra la chat utilizzando l'oggetto visible
+      filterChat(){
+        this.contacts.forEach( contact =>{
+          contact.visible = contact.name.toLowerCase().includes(this.searchChat.toLowerCase());
+        })
+      },
+      
     }
+
+    
 
 });
 

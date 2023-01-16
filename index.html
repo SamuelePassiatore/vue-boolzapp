@@ -56,14 +56,14 @@
                         <div class="find-chat d-flex align-items-center custom-bg-grey p-2"> 
                             <span class="d-flex h-100 align-items-center w-100 bg-white px-3 ">
                                 <i class="fa-solid fa-magnifying-glass pe-5"></i>
-                                <input type="text" placeholder="Cerca o inizia una nuova chat" class="w-100 border-0" v-model="searchChat" @key.enter="" @keyup.esc="clearInput">
+                                <input type="text" placeholder="Cerca o inizia una nuova chat" class="w-100 border-0" v-model.trim="searchChat" @keyup="filterChat" @keyup.esc="clearInput">
                             </span>
                         </div>
                     </div>
                     <!-- Main Side -->
                     <main>
-                        <div v-for="(contact, i) in filteredChat" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
-                            <div class="circle bigger">
+                        <div v-for="(contact, i) in contacts" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
+                            <div v-if="contact.visible" class="circle bigger">
                                 <img :src=`img/avatar${contact.avatar}.jpg` :alt="contact.avatar">
                             </div>
                             <span class="ps-3">{{contact.name}}</span>
