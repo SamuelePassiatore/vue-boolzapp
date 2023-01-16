@@ -49,10 +49,33 @@ ul {
     width: 40%;
     border-radius: 10px;
     margin: 10px;
-    padding: 10px;
-    padding-bottom: 0;
+    padding: 0 10px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+}
+
+.fa-caret-down{
+    display: flex;
+}
+
+.dropdown {
+    background-color: white;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    bottom: 20px;
+    left: calc(100% - 150px);
+}
+
+.dropdown li {
+    padding: 3px 0;
+    color: grey;
 }
 
 .sent{

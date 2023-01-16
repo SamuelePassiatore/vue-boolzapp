@@ -81,7 +81,7 @@
                             </div>
                             <div class="px-3">
                                 <div class="lh-sm">{{ contacts[currentIndex].name }}</div>
-                                <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso oggi alle {{newDate}}</div>
+                                <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso: {{getCurrentMoment()}}</div>
                             </div>
                         </div>
                         <ul class="d-flex align-items-center m-0">
@@ -94,10 +94,17 @@
                     </div>
                     <!-- Main chat -->
                     <div class="main-chat">
-                        <div class="d-flex flex-column" v-for="(message,index) in contacts[currentIndex].messages">
+                        <div class="d-flex flex-column dad-dropdown" v-for="(message,index) in contacts[currentIndex].messages">
                             <div :class="message.status" class="message">
-                                <div class="text-message">{{ message.text }}</div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="text-message">{{ message.text }}</div>
+                                    <i @click="toggleDropdown(index)" class="fa-solid fa-caret-down fs-5"></i>
+                                </div>
                                 <div class="date-message">{{ message.date }}</div>
+                                <ul class="dropdown p-0" v-if="index === dropdownIndex && dropdownDisplay">
+                                    <li>Message info</li>
+                                    <li @click="deleteMessage(index)">Delete message</li>
+                                </ul>
                             </div>
                         </div>
                     </div>

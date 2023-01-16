@@ -95,8 +95,8 @@ const app = Vue.createApp({
             currentIndex: 0,  
             newMessage: '',
             searchChat: '',
-            newDate: new Date().toLocaleString()
-
+            dropdownIndex: "",
+            dropdownDisplay: false
         }
     },
 
@@ -116,8 +116,10 @@ const app = Vue.createApp({
 
       // funzione che aggiunge un nuovo messaggio alla chat
       sentMessage(){
+        if(!this.newMessage) return;
+
         const message = {
-            date: new Date().toLocaleString(),
+            date: this.getCurrentMoment(),
             text: this.newMessage,
             status: 'sent'
         }
@@ -132,17 +134,41 @@ const app = Vue.createApp({
         this.searchChat = '';
       },
 
+      // Funzione che restituisce il tempo 
+      getCurrentMoment(){
+        return new Date().toLocaleString()
+      },
+
       // Funzione a intervalli che stampa il messaggio ok
       receivedMessage(){
         setTimeout (()=>{
             const message = {
-                date: new Date().toLocaleString(),
+                date: this.getCurrentMoment(),
                 text: 'ok',
                 status: 'received'
             }
             this.contacts[this.currentIndex].messages.push(message);
         }, 1000)
-     }
+      },
+
+      toggleDropdown(index) {
+        this.dropdownIndex = index;
+  
+        if(this.dropdownDisplay) {
+          this.dropdownDisplay = false;
+        } else {
+          this.dropdownDisplay = true;
+        }
+      },
+
+      hideDropdown() {
+        this.dropdownDisplay = false;
+      },
+
+      deleteMessage(index) {
+        this.contacts[this.currentIndex].messages.splice(index, 1);
+        this.hideDropdown();
+      }
     }
 
 });
