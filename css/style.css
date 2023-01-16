@@ -147,6 +147,12 @@ main div.chat-list:hover {
     background-color: #EAEAEA;;
 }
 
+.preview-message, .preview-date {
+    font-size: 12px;
+    line-height: 12px;
+    padding: 0;
+}
+
 /* Right Column */
 .header-chat, .footer-chat {
     height: 80px;
@@ -172,7 +178,6 @@ main div.chat-list:hover {
     width: 15%;
     height: 100%;
 }
-
 
 
 

@@ -91,8 +91,83 @@ const app = Vue.createApp({
                    }
                    ],
                  },
+                 {             
+                  name: 'Marco',
+                  avatar: '_5',
+                  visible: true,
+                  messages: [{
+                    date: '28/02/2014 16:30:55',
+                    text: 'Ti amo',
+                    status: 'sent'
+                  },
+                  {
+                    date: '28/02/2020 18:50:00',
+                    text: 'Io no',
+                    status: 'received'
+                  }
+                  ],
+                },
+                {
+                  name: 'Bianca',
+                  avatar: '_6',
+                  visible: true,
+                  messages: [{
+                    date: '28/03/2020 10:10:40',
+                    text: 'Di che colore era il cavallo bianco di Napoleone?',
+                    status: 'received'
+                  },
+                  {
+                    date: '28/03/2020 10:20:10',
+                    text: 'Bianco?',
+                    status: 'sent'
+                  },
+                  {
+                    date: '28/03/2020 16:15:22',
+                    text: 'Esatto',
+                    status: 'received'
+                  }
+                  ],
+                },
+                {
+                  name: 'Luigi',
+                  avatar: '_7',
+                  visible: true,
+                  messages: [{
+                    date: '20/03/2020 16:30:00',
+                    text: 'Sai chi ha scoperto la penicillina?',
+                    status: 'sent'
+                  },
+                  {
+                    date: '20/03/2020 16:30:55',
+                    text: 'Non lo so purtroppo',
+                    status: 'received'
+                  },
+                  {
+                    date: '20/03/2020 16:35:00',
+                    text: 'Alexander Fleming!',
+                    status: 'sent'
+                  }
+                  ],
+                },
+                {             
+                  name: 'Vincenzo',
+                  avatar: '_8',
+                  visible: true,
+                  messages: [{
+                    date: '28/02/2014 16:30:55',
+                    text: 'Tra due mesi scalerò il Monte Everest',
+                    status: 'sent'
+                  },
+                  {
+                    date: '28/02/2020 18:50:00',
+                    text: 'Tu sei matto da legare',
+                    status: 'received'
+                  }
+                  ],
+                },
             ], 
             currentIndex: 0,  
+            lastIndex: 0,
             newMessage: '',
             searchChat: '',
             dropdownIndex: "",
@@ -105,6 +180,11 @@ const app = Vue.createApp({
       changeCurrentIndex(index){
         console.log(this.currentIndex);
         return this.currentIndex = index;
+      },
+      
+      // Funzione che prende l'ultimo elemento
+      getLastIndex(index){
+        return this.contacts[index].messages.length-1;
       },
 
       // funzione che aggiunge un nuovo messaggio alla chat

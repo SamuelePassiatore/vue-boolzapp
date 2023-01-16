@@ -20,102 +20,108 @@
 </head>
 <body class="vh-100">
     <div id="root" class="container h-100 d-flex">
-            <div class="row w-100">
-                <!-- Left Column -->
-                <div class="list-structure col-4 h-100 p-0">
-                    <!-- Header Side -->
-                    <header class="px-3 d-flex align-items-center justify-content-between">
+        <div class="row w-100">
+            <!-- Left Column -->
+            <div class="list-structure col-4 h-100 p-0">
+                <!-- Header Side -->
+                <header class="px-3 d-flex align-items-center justify-content-between">
                     <!-- User -->
-                        <div class="d-flex align-items-center">
-                            <div class="circle">
-                                <img :src=`img/avatar${user.avatar}.jpg` :alt="user.name">
-                            </div>
-                            <span class="ps-1">{{ user.name }}</span>
+                    <div class="d-flex align-items-center">
+                        <div class="circle">
+                            <img :src=`img/avatar${user.avatar}.jpg` :alt="user.name">
                         </div>
-                        <ul class="d-flex align-items-center m-0">
-                            <li>
-                                <i class="fa-solid fa-circle-notch fs-4 px-2"></i>
-                                <i class="fa-solid fa-message fs-4 px-2"></i>
-                                <i class="fa-solid fa-ellipsis-vertical fs-4 px-2"></i>
-                            </li>
-                        </ul>
-                    </header>
-                    <!-- Under Header side -->
-                    <div class="under-header">
-                        <div class="notifications px-3">
-                            <div class="d-flex align-items-center h-100">
-                                <div class="circle me-3">
-                                    <i class="fa-solid fa-bell-slash fs-4 d-block text-center"></i>
-                                </div>
-                                <div>
-                                    <div class="lh-sm">Ricevi notifiche di nuovi messaggi</div>
-                                    <div class="active-notifies text-secondary lh-sm text-decoration-underline fs-small-custom">Attiva notifiche desktop</div>
-                                </div>
+                        <span class="ps-1">{{ user.name }}</span>
+                    </div>
+                    <ul class="d-flex align-items-center m-0">
+                        <li>
+                            <i class="fa-solid fa-circle-notch fs-4 px-2"></i>
+                            <i class="fa-solid fa-message fs-4 px-2"></i>
+                            <i class="fa-solid fa-ellipsis-vertical fs-4 px-2"></i>
+                        </li>
+                    </ul>
+                </header>
+                <!-- Under Header side -->
+                <div class="under-header">
+                    <div class="notifications px-3">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle me-3">
+                                <i class="fa-solid fa-bell-slash fs-4 d-block text-center"></i>
                             </div>
-                        </div>
-                        <div class="find-chat d-flex align-items-center custom-bg-grey p-2"> 
-                            <span class="d-flex h-100 align-items-center w-100 bg-white px-3 ">
-                                <i class="fa-solid fa-magnifying-glass pe-5"></i>
-                                <input type="text" placeholder="Cerca o inizia una nuova chat" class="w-100 border-0" v-model.trim="searchChat" @keyup="filterChat" @keyup.esc="clearInput">
-                            </span>
+                            <div>
+                                <div class="lh-sm">Ricevi notifiche di nuovi messaggi</div>
+                                <div class="active-notifies text-secondary lh-sm text-decoration-underline fs-small-custom">Attiva notifiche desktop</div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Main Side -->
-                    <main>
-                        <div v-for="(contact, i) in contacts" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
-                            <div v-if="contact.visible" class="circle bigger">
-                                <img :src=`img/avatar${contact.avatar}.jpg` :alt="contact.avatar">
-                            </div>
-                            <span class="ps-3">{{contact.name}}</span>
-                        </div>
-                    </main>
+                    <div class="find-chat d-flex align-items-center custom-bg-grey p-2"> 
+                        <span class="d-flex h-100 align-items-center w-100 bg-white px-3 ">
+                            <i class="fa-solid fa-magnifying-glass pe-5"></i>
+                            <input type="text" placeholder="Cerca o inizia una nuova chat" class="w-100 border-0" v-model.trim="searchChat" @keyup="filterChat" @keyup.esc="clearInput">
+                        </span>
+                    </div>
                 </div>
+                <!-- Main Side -->
+                <main>
+                    <div v-for="(contact, i) in contacts" @click="changeCurrentIndex(i)" class="chat-list d-flex align-items-start px-3 py-2 mb-1">
+                        <div v-if="contact.visible" class="circle bigger">
+                            <img :src=`img/avatar${contact.avatar}.jpg` :alt="contact.avatar">
+                        </div>
+                        <div v-if="contact.visible" class="ps-3">
+                            <span>{{contact.name}}</span>
+                            <div>
+                                <div class="preview-message text-secondary pb-1 pt-1">{{ contact.messages[getLastIndex(i)].text }}</div>
+                                <div class="preview-date text-secondary">{{ contact.messages[getLastIndex(i)].date }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
 
-                <!-- Right Column -->
-                <div class="open-structure col-8 bg-warning h-100 p-0">
-                    <!-- Header chat -->
-                    <div class="header-chat px-3 d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <div class="circle">
-                                <img :src=`img/avatar${contacts[currentIndex].avatar}.jpg` :alt="contacts[currentIndex].name">
-                            </div>
-                            <div class="px-3">
-                                <div class="lh-sm">{{ contacts[currentIndex].name }}</div>
-                                <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso: {{getCurrentMoment()}}</div>
-                            </div>
+            <!-- Right Column -->
+            <div class="open-structure col-8 bg-warning h-100 p-0">
+                <!-- Header chat -->
+                <div class="header-chat px-3 d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="circle">
+                            <img :src=`img/avatar${contacts[currentIndex].avatar}.jpg` :alt="contacts[currentIndex].name">
                         </div>
-                        <ul class="d-flex align-items-center m-0">
-                            <li>
-                                <i class="fa-solid fa-circle-notch fs-4 px-2"></i>
-                                <i class="fa-solid fa-paperclip fs-4 px-2"></i>
-                                <i class="fa-solid fa-ellipsis-vertical fs-4 px-2"></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Main chat -->
-                    <div class="main-chat">
-                        <div class="d-flex flex-column dad-dropdown" v-for="(message,index) in contacts[currentIndex].messages">
-                            <div :class="message.status" class="message">
-                                <div class="d-flex justify-content-between">
-                                    <div class="text-message">{{ message.text }}</div>
-                                    <i @click="toggleDropdown(index)" class="fa-solid fa-caret-down fs-5"></i>
-                                </div>
-                                <div class="date-message">{{ message.date }}</div>
-                                <ul class="dropdown p-0" v-if="index === dropdownIndex && dropdownDisplay">
-                                    <li>Message info</li>
-                                    <li @click="deleteMessage(index)">Delete message</li>
-                                </ul>
-                            </div>
+                        <div class="px-3">
+                            <div class="lh-sm">{{ contacts[currentIndex].name }}</div>
+                            <div class="text-secondary lh-sm fs-small-custom">Ultimo accesso: {{getCurrentMoment()}}</div>
                         </div>
                     </div>
-                    <!-- Footer chat -->
-                    <div class="footer-chat d-flex align-items-center custom-bg-grey p-2">
-                        <span class="footer-left d-flex align-items-center justify-content-center"><i class="fa-regular fa-face-smile fs-4 text-secondary"></i></span>
-                        <span class="footer-center d-flex py-1"><input type="text" placeholder="Scrivi un messaggio" class="w-100 border-0 rounded-1 px-2" v-model.trim="newMessage" @keyup.enter="sentMessage"></span>
-                        <span class="footer-right d-flex align-items-center justify-content-center"><i class="fa-solid fa-microphone fs-4 text-secondary"></i></span>
+                    <ul class="d-flex align-items-center m-0">
+                        <li>
+                            <i class="fa-solid fa-circle-notch fs-4 px-2"></i>
+                            <i class="fa-solid fa-paperclip fs-4 px-2"></i>
+                            <i class="fa-solid fa-ellipsis-vertical fs-4 px-2"></i>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Main chat -->
+                <div class="main-chat">
+                    <div class="d-flex flex-column dad-dropdown" v-for="(message,index) in contacts[currentIndex].messages">
+                        <div :class="message.status" class="message">
+                            <div class="d-flex justify-content-between">
+                                <div class="text-message">{{ message.text }}</div>
+                                <i @click="toggleDropdown(index)" class="fa-solid fa-caret-down fs-5"></i>
+                            </div>
+                            <div class="date-message">{{ message.date }}</div>
+                            <ul class="dropdown p-0" v-if="index === dropdownIndex && dropdownDisplay">
+                                <li>Message info</li>
+                                <li @click="deleteMessage(index)">Delete message</li>
+                            </ul>
+                        </div>
                     </div>
+                </div>
+                <!-- Footer chat -->
+                <div class="footer-chat d-flex align-items-center custom-bg-grey p-2">
+                    <span class="footer-left d-flex align-items-center justify-content-center"><i class="fa-regular fa-face-smile fs-4 text-secondary"></i></span>
+                    <span class="footer-center d-flex py-1"><input type="text" placeholder="Scrivi un messaggio" class="w-100 border-0 rounded-1 px-2" v-model.trim="newMessage" @keyup.enter="sentMessage"></span>
+                    <span class="footer-right d-flex align-items-center justify-content-center"><i class="fa-solid fa-microphone fs-4 text-secondary"></i></span>
                 </div>
             </div>
+        </div>
     </div>
 </body>
 </html>
